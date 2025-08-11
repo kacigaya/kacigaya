@@ -11,17 +11,12 @@ def port_scan(target, ports):
     print(f"Scanning {target}...")
     for port in ports:
         try:
-            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            s.settimeout(0.5)
-            result = s.connect_ex((target, port))
-            if result == 0:
+            with socket.create_connection((target, port), timeout=0.5) as s:
                 print(f"[+] Port {port} is OPEN")
-            s.close()
+        except (socket.timeout, socket.error, ConnectionRefusedError):
+            continue
         except KeyboardInterrupt:
             print("\nScan stopped.")
-            break
-        except socket.error:
-            print("Host unreachable.")
             break
 
 if __name__ == "__main__":
