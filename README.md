@@ -20,7 +20,7 @@ def port_scan(target, ports):
             break
 
 if __name__ == "__main__":
-    target_ip = "192.168.1.1"
+    target_ip = input("Enter IP to scan: ")
     common_ports = [21, 22, 80, 443, 8080]
     port_scan(target_ip, common_ports)
 ```
