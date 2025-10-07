@@ -4,25 +4,32 @@
 
 ---
 
-```python
-import socket
+```lua
+local socket = require("socket")
 
-def port_scan(target, ports):
-    print(f"Scanning {target}...")
-    for port in ports:
-        try:
-            with socket.create_connection((target, port), timeout=0.5) as s:
-                print(f"[+] Port {port} is OPEN")
-        except (socket.timeout, socket.error, ConnectionRefusedError):
-            continue
-        except KeyboardInterrupt:
-            print("\nScan stopped.")
-            break
+local function port_scan(target, ports)
+    print(string.format("Scanning %s...", target))
+    
+    for _, port in ipairs(ports) do
+        local sock = socket.tcp()
+        sock:settimeout(0.5)
+        
+        local success, err = sock:connect(target, port)
 
-if __name__ == "__main__":
-    target_ip = input("Enter IP to scan: ")
-    common_ports = [21, 22, 80, 443, 8080]
-    port_scan(target_ip, common_ports)
+        if success then
+            print(string.format("[+] Port %d is OPEN", port))
+            sock:close()
+        else
+            sock:close()
+        end
+    end
+end
+
+io.write("Enter IP to scan: ")
+local target_ip = io.read()
+
+local common_ports = {21, 22, 80, 443, 8080}
+port_scan(target_ip, common_ports)
 ```
 
 ---
