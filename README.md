@@ -1,6 +1,8 @@
 # 👋 Hey, I'm Gaya
 
-** user@gaya:~$ \ **
+```bash
+user@gaya:~$ \
+```
 
 ---
 
