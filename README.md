@@ -9,5 +9,3 @@ user@gaya:~$ \
 ```lua
 print("Hello, World!")
 ```
-
----
