@@ -1,6 +1,6 @@
 # 👋 Hey, I'm Gaya
 
-<img src="logo.svg" alt="terminal" width="200">
+<img src="logo.svg" alt="terminal" width="420">
 
 ---
 
